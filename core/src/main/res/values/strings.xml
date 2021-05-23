@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="image_description">Poster</string>
+    <string name="text_primary">Title Text</string>
+    <string name="text_subtitle">Subtitle Text</string>
+</resources>
