@@ -8,6 +8,8 @@ import com.cendekia.movieapp.core.data.source.remote.RemoteDataSource
 import com.cendekia.movieapp.core.data.source.remote.network.ApiService
 import com.cendekia.movieapp.core.domain.repository.IWatchesRepository
 import com.cendekia.movieapp.core.utils.AppExecutors
+import net.sqlcipher.database.SQLiteDatabase
+import net.sqlcipher.database.SupportFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
@@ -19,10 +21,14 @@ import java.util.concurrent.TimeUnit
 val databaseModule = module {
     factory { get<WatchesDatabase>().watchesDao() }
     single {
+        val passphrase: ByteArray = SQLiteDatabase.getBytes("cendekia".toCharArray())
+        val factory = SupportFactory(passphrase)
         Room.databaseBuilder(
             androidContext(),
             WatchesDatabase::class.java, "Watches.db"
-        ).fallbackToDestructiveMigration().build()
+
+        ).fallbackToDestructiveMigration()
+            .openHelperFactory(factory).build()
     }
 }
 

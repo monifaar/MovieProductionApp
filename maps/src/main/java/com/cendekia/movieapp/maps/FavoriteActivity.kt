@@ -24,7 +24,7 @@ class FavoriteActivity : AppCompatActivity() {
         binding = ActivityFavoriteBinding.inflate(layoutInflater)
         setContentView(binding.root)
         loadKoinModules(favoriteModule)
-        unloadKoinModules(favoriteModule)
+//        unloadKoinModules(favoriteModule)
         supportActionBar?.title = "Watches Maps"
 
         getDataWatches()
