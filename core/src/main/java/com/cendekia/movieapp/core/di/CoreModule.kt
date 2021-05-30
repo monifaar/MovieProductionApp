@@ -26,7 +26,7 @@ val databaseModule = module {
         val factory = SupportFactory(passphrase)
         Room.databaseBuilder(
             androidContext(),
-            WatchesDatabase::class.java, "Watches.db"
+            WatchesDatabase::class.java, "Movie.db"
 
         ).fallbackToDestructiveMigration()
             .openHelperFactory(factory).build()
